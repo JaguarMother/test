@@ -13,9 +13,10 @@
             box-sizing: border-box;
         }
 
+        /* Global Body Styling */
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #111;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
             color: #eee;
         }
 
@@ -26,13 +27,14 @@
 
         /* Header */
         header {
-            background-color: #333;
+            background-color: #1c1c1c;
             padding: 20px 0;
+            border-bottom: 2px solid #ff4500;
         }
 
         header h1 {
-            font-size: 36px;
-            color: #0f0;
+            font-size: 42px;
+            color: #ff4500;
             text-align: center;
         }
 
@@ -49,14 +51,15 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #0f0;
+            color: #ff4500;
             font-weight: bold;
             font-size: 18px;
-            transition: color 0.3s;
+            transition: color 0.3s ease, transform 0.2s ease;
         }
 
         nav ul li a:hover {
             color: #fff;
+            transform: scale(1.1);
         }
 
         /* Main Content */
@@ -71,73 +74,80 @@
         }
 
         .post {
-            background-color: #222;
+            background-color: #1e1e1e;
             padding: 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .post:hover {
-            background-color: #444;
+            background-color: #333;
+            transform: translateY(-10px);
         }
 
         .post h2 {
-            color: #0f0;
-            font-size: 24px;
+            color: #ff4500;
+            font-size: 26px;
             margin-bottom: 10px;
         }
 
         .post .meta {
             font-size: 14px;
-            color: #777;
+            color: #aaa;
             margin-bottom: 10px;
         }
 
         .post .summary {
             font-size: 16px;
-            color: #aaa;
+            color: #ddd;
             margin-bottom: 10px;
         }
 
         .read-more {
-            color: #0f0;
+            color: #ff4500;
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
+            transition: color 0.2s ease;
         }
 
         .read-more:hover {
             color: #fff;
         }
 
-        /* Footer */
-        footer {
-            background-color: #333;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        footer p {
-            color: #777;
-            font-size: 14px;
-        }
-
         /* Button Styling */
         .button {
-            background-color: #333;
-            color: #0f0;
-            padding: 10px 20px;
+            background-color: #1c1c1c;
+            color: #ff4500;
+            padding: 12px 24px;
             font-size: 18px;
             font-weight: bold;
-            border: none;
-            border-radius: 5px;
+            border: 2px solid #ff4500;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .button:hover {
-            background-color: #444;
+            background-color: #ff4500;
+            color: #121212;
+            border-color: #121212;
+            transform: scale(1.1);
         }
+
+        /* Footer */
+        footer {
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 2px solid #ff4500;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
