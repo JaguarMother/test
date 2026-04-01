@@ -3,217 +3,511 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dudu Den</title>
+
+    <!-- Hacker Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
     <style>
-        /* Reset some defaults */
+        /* Root Colors */
+        :root {
+            --neon-green: #00ff9f;
+            --dark-green: #00cc7a;
+            --bg-dark: #0d0d0d;
+        }
+
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Global Body Styling */
+        /* Body */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212;
-            color: #eee;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--bg-dark);
+            color: #cfcfcf;
         }
 
+        /* Scanline effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                    to bottom,
+                    rgba(0,255,159,0.03),
+                    rgba(0,255,159,0.03) 1px,
+                    transparent 1px,
+                    transparent 3px
+            );
+            pointer-events: none;
+        }
+
+        /* Container */
         .container {
             width: 90%;
-            margin: 0 auto;
+            margin: auto;
         }
 
         /* Header */
         header {
-            background-color: #1c1c1c;
+            background-color: #111;
             padding: 20px 0;
-            border-bottom: 2px solid #ff4500;
+            border-bottom: 2px solid var(--neon-green);
         }
 
         header h1 {
-            font-size: 42px;
-            color: #ff4500;
             text-align: center;
+            color: var(--neon-green);
+            font-size: 42px;
+            text-shadow:
+                    0 0 5px var(--neon-green),
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green);
         }
 
+        /* Nav */
         nav ul {
-            list-style-type: none;
+            list-style: none;
             display: flex;
             justify-content: center;
-            padding-top: 10px;
-        }
-
-        nav ul li {
-            margin: 0 15px;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         nav ul li a {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 4px;
+            background: rgba(0, 255, 159, 0.05);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
             text-decoration: none;
-            color: #ff4500;
             font-weight: bold;
-            font-size: 18px;
-            transition: color 0.3s ease, transform 0.2s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
         }
 
         nav ul li a:hover {
-            color: #fff;
-            transform: scale(1.1);
+            background: var(--neon-green);
+            color: #000;
+            box-shadow:
+                    0 0 5px var(--neon-green),
+                    0 0 15px var(--neon-green),
+                    0 0 30px var(--neon-green);
+            transform: translateY(-2px);
         }
 
-        /* Main Content */
+        /* Main */
         main {
             padding: 40px 0;
         }
 
+        /* Image */
+        .featured-image {
+            width: 50%;
+            display: block;
+            margin: 0 auto 20px auto;
+            border: 2px solid #00ff9f;
+            box-shadow: 0 0 15px #00ff9f;
+            border-radius: 10px;
+        }
+
+        /* Posts Grid */
         .blog-posts {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
+        /* Post Card */
         .post {
-            background-color: #1e1e1e;
+            background-color: #111;
+            border: 1px solid rgba(0, 255, 159, 0.2);
             padding: 20px;
-            border-radius: 8px;
-            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 6px;
+            transition: all 0.3s;
         }
 
         .post:hover {
-            background-color: #333;
-            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 159, 0.3);
+            transform: translateY(-8px);
         }
 
         .post h2 {
-            color: #ff4500;
-            font-size: 26px;
+            color: var(--neon-green);
             margin-bottom: 10px;
         }
 
-        .post .meta {
+        .meta {
             font-size: 14px;
-            color: #aaa;
+            color: #888;
             margin-bottom: 10px;
         }
 
-        .post .summary {
-            font-size: 16px;
-            color: #ddd;
+        .summary {
             margin-bottom: 10px;
         }
 
+        /* Read more */
         .read-more {
-            color: #ff4500;
+            color: var(--neon-green);
             text-decoration: none;
             font-weight: bold;
-            font-size: 18px;
-            transition: color 0.2s ease;
         }
 
         .read-more:hover {
-            color: #fff;
+            text-shadow: 0 0 5px var(--neon-green);
         }
 
-        /* Button Styling */
+        /* Button */
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
         .button {
-            background-color: #1c1c1c;
-            color: #ff4500;
+            display: inline-block;
             padding: 12px 24px;
-            font-size: 18px;
-            font-weight: bold;
-            border: 2px solid #ff4500;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            text-decoration: none;
+            transition: 0.3s;
         }
 
         .button:hover {
-            background-color: #ff4500;
-            color: #121212;
-            border-color: #121212;
-            transform: scale(1.1);
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 15px var(--neon-green);
         }
 
         /* Footer */
         footer {
-            background-color: #1c1c1c;
-            padding: 20px 0;
+            margin-top: 40px;
+            padding: 20px;
             text-align: center;
-            border-top: 2px solid #ff4500;
+            border-top: 1px solid var(--neon-green);
+            color: #777;
         }
 
-        footer p {
-            color: #aaa;
+        /* Responsive */
+        @media (max-width: 900px) {
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        /* Terminal Window */
+        .terminal-window {
+            max-width: 100px;
+            float: right;
+            margin: 0 0 20px 20px;
+        }
+
+        /* Header bar */
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(0,255,159,0.2);
+        }
+
+        /* Mac-style dots */
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        /* Title text */
+        .title {
+            margin-left: 10px;
+            color: #00ff9f;
             font-size: 14px;
         }
 
-        /* Image Styling */
+        /* Image inside terminal */
         .featured-image {
-            max-width: 100%;
+            width: 100%;
+            display: block;
+        }
+
+
+
+
+
+
+
+
+        /* Terminal title container */
+        .terminal-title {
+            text-align: center;
+            color: var(--neon-green);
+            font-size: 38px;
+            text-shadow:
+                    0 0 5px var(--neon-green),
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green);
+        }
+
+        /* Each line */
+        .terminal-line {
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* Output line (slightly dimmer) */
+        .output {
+            color: #00cc7a;
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        /* Command line */
+        .command {
+            font-size: 42px;
+        }
+
+        /* Blinking cursor */
+        .cursor {
+            margin-left: 5px;
+            animation: blink 1s steps(2, start) infinite;
+        }
+
+        @keyframes blink {
+            to {
+                visibility: hidden;
+            }
+        }
+
+
+
+
+
+/*        .posts-container:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.25);
+        }*/
+
+        /* Outer container */
+        .posts-container {
+            border: 1px solid rgba(0, 255, 159, 0.3);
+            background: rgba(0, 255, 159, 0.03);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 255, 159, 0.1);
+            position: relative;
+        }
+
+        /* Header label (like terminal section title) */
+        .posts-header {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #0d0d0d;
+            padding: 2px 10px;
+            font-size: 14px;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+
+
+
+        .corner-image {
+            position: fixed;
+            bottom: 20px;  /* adjust distance from bottom */
+            right: 20px;   /* adjust distance from right */
+            width: 80px;   /* small size */
             height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            z-index: 1000; /* make sure it's on top */
+            border-radius: 8px; /* optional rounded corners */
+            box-shadow: 0 0 10px #00ff9f; /* optional glow */
+        }
+
+        .corner-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .corner-image {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 30px;
+            height: auto;
+            z-index: 1000;
+        }
+
+        .corner-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .corner-image .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 159, 0.4); /* green tint */
+            border-radius: 8px;
+            pointer-events: none; /* let clicks pass through */
+        }
+
+
+        .divider {
+            width: 80%;
+            margin: 40px auto;  /* space above and below */
+            height: 2px;
+            background: linear-gradient(to right, rgba(0,255,159,0), #00ff9f, rgba(0,255,159,0));
+            box-shadow: 0 0 10px #00ff9f;
+            border-radius: 5px;
         }
 
     </style>
+
+
+
 </head>
+
 <body>
+<h1 class="terminal-title">
+    <div class="terminal-line output">Accessing Tom's site...</div>
+    <div class="terminal-line command">
+        root@maziarz.dev:~$ <span class="cursor">█</span>
+    </div>
+</h1>
 <header>
     <div class="container">
-        <h1>Dudu's Den</h1>
+        <h1> </h1>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Projects</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
 <main>
+
+
     <div class="container">
-        <!-- Image at the top of the blog page -->
-        <img src="https://github.com/JaguarMother/test/blob/main/Bubu-and-Dudu.png?raw=true" alt="Bubu and Dudu" class="featured-image">
+
+<!--
+Latest blog posts:
+        <section class="blog-posts">
+-->
+
+            <div class="posts-container">
+                <div class="posts-header">[ latest_posts ]</div>
+
+                <section class="blog-posts">
+
+
+            <article class="post">
+                <h2>POST 0 TITLE</h2>
+                <p class="meta">Posted on March 31, 2026 by Admin</p>
+                <p class="summary">Post 0 desc.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="post">
+                <h2>POST 1 TITLE</h2>
+                <p class="meta">Posted on March 31, 2026 by Admin</p>
+                <p class="summary">Post 1 desc.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="post">
+                <h2>POST 2 TITLE</h2>
+                <p class="meta">Posted on March 31, 2026 by Admin</p>
+                <p class="summary">Post 2 desc.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+        </section>
+
+        <div class="button-container">
+            <a href="page0.html" class="button">ACCESS NEXT PAGE</a>
+        </div>
+
+    </div>
+
+
+
+        </section>
+    </div>
+
+
+
+
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+
+
+
+
+    <div class="posts-container">
+        <div class="posts-header">[ projects ]</div>
 
         <section class="blog-posts">
             <article class="post">
-                <h2>Introduction to Cybersecurity</h2>
-                <p class="meta">Posted on March 31, 2026 by Admin</p>
-                <p class="summary">Learn the basics of cybersecurity and how to protect your systems from malicious attacks. An essential read for every beginner.</p>
-                <a href="#" class="read-more">Read More</a>
+                <h2>Project Alpha</h2>
+                <p class="summary">A personal cybersecurity tool for testing network security.</p>
+                <a href="#" class="read-more">View Project →</a>
             </article>
+
             <article class="post">
-                <h2>Hacking Ethical vs. Malicious Hacking</h2>
-                <p class="meta">Posted on March 28, 2026 by Hacker123</p>
-                <p class="summary">What separates ethical hackers from malicious ones? Explore the ethical responsibilities and the tools used by hackers.</p>
-                <a href="#" class="read-more">Read More</a>
+                <h2>Project Beta</h2>
+                <p class="summary">A home lab automation system for pentesting labs.</p>
+                <a href="#" class="read-more">View Project →</a>
             </article>
+
             <article class="post">
-                <h2>Setting Up a Home Lab for Pen Testing</h2>
-                <p class="meta">Posted on March 25, 2026 by TechGuru</p>
-                <p class="summary">A step-by-step guide to setting up your very own home lab to practice penetration testing without the risk of breaking the law.</p>
-                <a href="#" class="read-more">Read More</a>
+                <h2>Project Gamma</h2>
+                <p class="summary">A tool for secure file sharing over local networks.</p>
+                <a href="#" class="read-more">View Project →</a>
             </article>
         </section>
-
-        <!-- Navigation Button -->
-        <div class="button-container">
-            <!-- Option 1: Link as a Button -->
-            <a href="another-page.html" class="button">Go to Another Page</a>
-
-            <!-- Option 2: Button with JavaScript -->
-            <!-- <button onclick="window.location.href='another-page.html';" class="button">Go to Another Page</button> -->
-        </div>
     </div>
+
+
+
+    <div class="corner-image">
+        <img src="https://github.com/JaguarMother/test/blob/main/Bubu-and-Dudu.png?raw=true" alt="Bubu and Dudu">
+        <div class="overlay"></div>
+    </div>
+
+
 </main>
 
 <footer>
-    <div class="container">
-        <p>&copy; 2026 Dudu Den. All Rights Reserved.</p>
-    </div>
+    <p>Tom's Den // SYSTEM SECURED</p>
 </footer>
+
 </body>
 </html>
