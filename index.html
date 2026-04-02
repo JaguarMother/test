@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dudu Den</title>
+    <title>Tom's Den</title>
 
     <!-- Hacker Font -->
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -377,11 +377,30 @@
 
         .divider {
             width: 80%;
-            margin: 40px auto;  /* space above and below */
+            margin: 80px auto;  /* increase top and bottom spacing */
             height: 2px;
             background: linear-gradient(to right, rgba(0,255,159,0), #00ff9f, rgba(0,255,159,0));
             box-shadow: 0 0 10px #00ff9f;
             border-radius: 5px;
+        }
+
+
+        .blog-posts a.read-more {
+            display: block;
+            font-size: 18px;
+            padding: 6px 10px;
+            color: var(--neon-green);
+            text-decoration: none;
+            border: 1px solid rgba(0,255,159,0.3);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .blog-posts a.read-more:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 10px var(--neon-green);
+            transform: translateX(4px);
         }
 
     </style>
@@ -393,8 +412,9 @@
 <body>
 <h1 class="terminal-title">
     <div class="terminal-line output">Accessing Tom's site...</div>
+    <div class="terminal-line output">Welcome!</div>
     <div class="terminal-line command">
-        root@maziarz.dev:~$ <span class="cursor">█</span>
+        root@maziarz.dev:~# <span class="cursor">█</span>
     </div>
 </h1>
 <header>
@@ -402,9 +422,10 @@
         <h1> </h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Projects</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
             </ul>
         </nav>
     </div>
@@ -472,7 +493,7 @@ Latest blog posts:
 
 
     <div class="posts-container">
-        <div class="posts-header">[ projects ]</div>
+        <div class="posts-header">[ latest_projects ]</div>
 
         <section class="blog-posts">
             <article class="post">
@@ -494,7 +515,6 @@ Latest blog posts:
             </article>
         </section>
     </div>
-
 
 
     <div class="corner-image">

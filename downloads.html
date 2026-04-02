@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Tom's Den</title>
+
+    <!-- Hacker Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-green: #00ff9f;
+            --bg-dark: #0d0d0d;
+        }
+
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--bg-dark);
+            color: #cfcfcf;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                    to bottom,
+                    rgba(0,255,159,0.03),
+                    rgba(0,255,159,0.03) 1px,
+                    transparent 1px,
+                    transparent 3px
+            );
+            pointer-events: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: #111;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--neon-green);
+        }
+        header h1 { text-align: center; color: var(--neon-green); }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 4px;
+            background: rgba(0, 255, 159, 0.05);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+        nav ul li a:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 5px var(--neon-green),0 0 15px var(--neon-green),0 0 30px var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        /* Terminal Header */
+        .terminal-title {
+            text-align: center;
+            color: var(--neon-green);
+            font-size: 38px;
+            text-shadow: 0 0 5px var(--neon-green),0 0 10px var(--neon-green),0 0 20px var(--neon-green);
+            margin: 0;
+            padding-top: 20px;
+        }
+        .terminal-line { display: block; line-height: 1.4; }
+        .output { color: #00cc7a; opacity: 0.8; margin-bottom: 5px; font-size:20px; }
+        .command { font-size: 32px; }
+        .cursor { margin-left: 5px; animation: blink 1s steps(2, start) infinite; }
+        @keyframes blink { to { visibility: hidden; } }
+
+        /* Blog cards */
+        .blog-container {
+            width: 90%;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .blog-card {
+            background-color: #111;
+            border: 1px solid rgba(0,255,159,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0,255,159,0.3);
+            transform: translateY(-3px);
+        }
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 15px 20px;
+        }
+        .blog-title {
+            color: var(--neon-green);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .blog-summary {
+            color: #aaa;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--neon-green);
+            color: #777;
+        }
+
+
+        /* Make .zip files golden/yellow */
+        a.zip-file {
+            color: #FFD700; /* gold/yellow */
+        }
+
+        a.zip-file:hover {
+            background: #FFD700;
+            color: #000;
+            box-shadow: 0 0 5px #FFD700, 0 0 15px #FFD700, 0 0 30px #FFD700;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1 class="terminal-title">
+    <div class="terminal-line output">Accessing downloads directory...</div>
+    <div class="terminal-line output">Ready!</div>
+    <div class="terminal-line command">
+        root@maziarz.dev:~/downloads# <span class="cursor">█</span>
+    </div>
+</h1>
+
+<header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+        <div class="downloads-container" style="width:90%; margin:40px auto; font-family: 'Share Tech Mono', monospace; color:#00ff9f;">
+            <h2 style="text-align:center; margin-bottom:20px;">Downloads Directory</h2>
+        </div>
+
+    <li class="terminal-line output">
+        root@maziarz.dev:~/downloads#
+        <a href="WinDirStat.exe" download class="zip-file">WinDirStat.exe</a>
+        <span class="file-size">[2.36 MB]</span>
+    </li>
+
+    <li class="terminal-line output">
+        root@maziarz.dev:~/downloads#
+        <a href="Autoruns.exe" download class="zip-file">Autoruns.exe</a>
+        <span class="file-size">[1.67 MB]</span>
+    </li>
+
+    <li class="terminal-line output">
+        root@maziarz.dev:~/downloads#
+        <a href="WinPrefetchView.exe" download class="zip-file">WinPrefetchView.exe</a>
+        <span class="file-size">[112 KB]</span>
+    </li>
+
+</main>
+
+<footer>
+    <p>Tom's Den // SYSTEM SECURED</p>
+</footer>
+
+</body>
+</html>
