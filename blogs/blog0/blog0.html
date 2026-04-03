@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TCP and UDP Protocols - Tom's Den</title>
+
+    <!-- Hacker Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-green: #00ff9f;
+            --bg-dark: #0d0d0d;
+        }
+
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--bg-dark);
+            color: #cfcfcf;
+            line-height: 1.5;
+        }
+
+        /* Terminal overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                    to bottom,
+                    rgba(0,255,159,0.03),
+                    rgba(0,255,159,0.03) 1px,
+                    transparent 1px,
+                    transparent 3px
+            );
+            pointer-events: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: #111;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--neon-green);
+        }
+        header h1 { text-align: center; color: var(--neon-green); }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 4px;
+            background: rgba(0, 255, 159, 0.05);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+        nav ul li a:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 5px var(--neon-green),0 0 15px var(--neon-green),0 0 30px var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        /* Terminal Header */
+        .terminal-title {
+            text-align: center;
+            color: var(--neon-green);
+            font-size: 38px;
+            text-shadow: 0 0 5px var(--neon-green),0 0 10px var(--neon-green),0 0 20px var(--neon-green);
+            margin: 0;
+            padding-top: 20px;
+        }
+        .terminal-line { display: block; line-height: 1.4; }
+        .output { color: #00cc7a; opacity: 0.8; margin-bottom: 5px; font-size:20px; }
+        .command { font-size: 32px; }
+        .cursor { margin-left: 5px; animation: blink 1s steps(2, start) infinite; }
+        @keyframes blink { to { visibility: hidden; } }
+
+        /* Blog content as terminal lines */
+        .blog-container {
+            width: 90%;
+            margin: 40px auto;
+            font-family: 'Share Tech Mono', monospace;
+            color: #00ff9f;
+        }
+        .blog-container li {
+            margin-bottom: 10px;
+        }
+        .blog-container a.zip-file {
+            color: #FFD700; /* gold/yellow */
+            text-decoration: none;
+        }
+        .blog-container a.zip-file:hover {
+            background: #FFD700;
+            color: #000;
+            box-shadow: 0 0 5px #FFD700, 0 0 15px #FFD700, 0 0 30px #FFD700;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--neon-green);
+            color: #777;
+        }
+
+
+        .divider {
+            width: 80%;
+            margin: 80px auto;  /* increase top and bottom spacing */
+            height: 2px;
+            background: linear-gradient(to right, rgba(0,255,159,0), #00ff9f, rgba(0,255,159,0));
+            box-shadow: 0 0 10px #00ff9f;
+            border-radius: 5px;
+        }
+
+        .blog-container h3 {
+            color: #FFD700;
+            font-size: 24px;      /* smaller than h2 */
+            margin: 15px 0 10px 0;
+        }
+
+        .centered-terminal {
+            display: inline-block;    /* Shrinks the block to content width */
+            text-align: left;         /* Keeps the lines left-aligned */
+            margin: 20px auto;        /* Centers the block horizontally */
+            font-size: 20px;
+            color: #00ff9f;
+        }
+        .neon-turquoise {
+            color: #00f9ff;
+            font-size: 20px;
+            opacity: 1;     /* make fully bright */
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1 class="terminal-title">
+    <div class="terminal-line output">Accessing blog directory...</div>
+    <div class="terminal-line output">Opening: TCP and UDP Protocols</div>
+    <div class="terminal-line command">
+        root@maziarz.dev:/blog/tcp_udp# <span class="cursor">█</span>
+    </div>
+</h1>
+
+<header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../blog.html">Blog</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
+                <li><a href="../../downloads.html">Downloads</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="blog-container">
+        <!-- Big Blog Title in Gold, no glow -->
+        <h1 style="text-align:center; color: #FFD700; font-size: 48px; margin-bottom: 30px;">
+            TCP and UDP Protocols
+        </h1>
+        <h2 style="color:#FFD700; font-size:28px; margin:20px 0 10px 0;">
+            The TCP Segment
+        </h2>
+        <!-- Terminal-style blog content -->
+        <li class="terminal-line output">
+            The TCP protocol units are called segments. This protocol has a handful of features that make it the ideal choice for when a reliable transmission is needed. It features a number of mechanisms, such as the three-way handshake, acknowledgement, error checking, and the sliding window.
+            <br><br>
+            Looking at the layout of a TCP header at the byte level, one will observe that it is broken down into the following:
+        </li>
+        <br>
+        <!-- First image after TCP paragraph -->
+        <img src="/blogs/blog0/tcp_headers.png"
+             alt="TCP Protocol Diagram"
+             style="max-width:100%; border:1px solid rgba(0,255,159,0.3); border-radius:6px; display:block; margin:10px auto;">
+
+        <div class="centered-terminal neon-turquoise">
+            Source Port: Identifies the sending port.<br>
+            Destination Port: Identifies the receiving port.<br>
+            Sequence Number: Used for order and reliability, it is the first byte in data sent.<br>
+            Acknowledgement Number: If ACK is set, indicates next byte expected by receiver.<br>
+            Data Offset: Specifies the header length.<br>
+            Reserved: Can be ignored, never used.<br>
+            Flags: Indicators of data and connection state.<br>
+            Window Size: Specifies bytes the sender can receive.<br>
+            Checksum: Used for checking for header and data errors.<br>
+            Data: This is the payload itself.<br>
+            Options: Optional parameters.
+        </div>
+    <br>
+        <h3>The TCP Three-Way Handshake</h3>
+        <li class="terminal-line output">
+            A TCP connection is established using the three-way handshake (“SYN, SYN-ACK, ACK”), which occurs before any application data is transmitted. The client initiates the connection by sending a segment with the SYN flag set. The server responds with a segment that has both SYN and ACK set, acknowledging the request and synchronizing sequence numbers. The client then replies with an ACK to confirm. Once this exchange completes, the connection is established and payload transmission can begin.
+        </li>
+
+        <br>
+        <h3>Acknowledgement Mechanism</h3>
+        <li class="terminal-line output">
+            The acknowledgement mechanism allows for checking if data sent has been received on the other end. Each time the receiver gets a segment of the data, it will send an ACK which confirms to the sender that the data sent has been received successfully on the other end. That is how TCP makes sure data has not been lost.
+        </li>
+
+
+        <br>
+            <h3>Sliding Window Mechanism</h3>
+            <li class="terminal-line output">
+                The acknowledgement mechanism allows for checking if data sent has been received on the other end. Each time the receiver gets a segment of the data, it will send an ACK which confirms to the sender that the data sent has been received successfully on the other end. That is how TCP makes sure data has not been lost.
+            </li>
+
+        <li class="terminal-line output">
+            TCP is able to control flow through the sliding window mechanism. Once communication is established and payload is being sent, instead of waiting for each ACK, TCP is able to send multiple parts at the same time. This is defined by the window size which can scale up and down based on the bandwidth available. The sliding window mechanism allows TCP to be efficient in this manner.
+        </li>
+        <br>
+        <!-- Second image after UDP paragraph -->
+        <img src="/blogs/blog0/tcp_handshake.png"
+             alt="TCP Protocol Diagram"
+             style="max-width:100%; border:1px solid rgba(0,255,159,0.3); border-radius:6px; display:block; margin:10px auto;">
+
+        <!-- Divider -->
+        <div class="divider"></div>
+        <h2 style="color:#FFD700; font-size:28px; margin:20px 0 10px 0;">
+            The UDP Datagram
+        </h2>
+        <li class="terminal-line output">
+            TCP is able to control flow through the sliding window mechanism. Once communication is established and payload is being sent, instead of waiting for each ACK, TCP is able to send multiple parts at the same time. This is defined by the window size which can scale up and down based on the bandwidth available. The sliding window mechanism allows TCP to be efficient in this manner.
+        </li>
+        <br>
+        <!-- Second image after UDP paragraph -->
+        <img src="/blogs/blog0/udp_headers.png"
+             alt="TCP Protocol Diagram"
+             style="max-width:100%; border:1px solid rgba(0,255,159,0.3); border-radius:6px; display:block; margin:10px auto;">
+
+    </div>
+</main>
+
+<footer>
+    <p>Tom's Den // SYSTEM SECURED</p>
+</footer>
+
+</body>
+</html>
