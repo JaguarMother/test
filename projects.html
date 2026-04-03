@@ -137,18 +137,72 @@
             padding: 0; /* remove extra padding in header container */
         }
 
+        /* center project box */
+        .project-details img {
+            display: block;
+            margin: 10px auto; /* centers horizontally */
+            max-width: 100%;
+            border: 2px solid var(--neon-green);
+            border-radius: 6px;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+
+        /* Floating button */
+        #toggleMenuBtn {
+            position: fixed;
+            right: 10px;           /* distance from the right edge */
+            top: 25%;              /* 25% from the top */
+            z-index: 999;
+            padding: 10px 14px;
+            background-color: var(--neon-green);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--neon-green);
+            transition: 0.3s;
+        }
+        #toggleMenuBtn:hover {
+            background-color: #00cc7a;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        /* Floating options panel */
+        .floating-options {
+            position: fixed;
+            right: 10px;
+            top: calc(25% + 50px); /* just below the button */
+            display: none;          /* hidden by default */
+            flex-direction: column;
+            gap: 8px;
+            z-index: 998;
+        }
+        .floating-options button {
+            padding: 8px 12px;
+            background-color: var(--neon-green);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 8px var(--neon-green);
+            transition: 0.3s;
+        }
+        .floating-options button:hover {
+            background-color: #00cc7a;
+            box-shadow: 0 0 12px var(--neon-green);
+        }
     </style>
 </head>
-<body>
-
-
 <body>
 
 <h1 class="terminal-title">
     <div class="terminal-line output">Accessing project directory...</div>
     <div class="terminal-line output">Ready!</div>
     <div class="terminal-line command">
-        root@maziarz.dev:~/projects# <span class="cursor">█</span>
+        root@maziarz.dev:/projects# <span class="cursor">█</span>
     </div>
 </h1>
 
@@ -165,40 +219,165 @@
     </div>
 </header>
 
+<!-- Floating Control Button -->
+<div class="floating-button">
+    <button id="toggleMenuBtn">☰</button>
+    <div class="floating-options">
+        <button id="expandAll">Expand All</button>
+        <button id="collapseAll">Collapse All</button>
+    </div>
+</div>
 
 <div class="container">
 
     <!-- Project Alpha -->
     <div class="project">
-        <div class="project-title">Project Alpha</div>
-        <div class="project-summary">A personal cybersecurity tool for testing network security.</div>
+        <div class="project-title">Stocker</div>
+        <div class="project-summary">A Python-based app that tracks cryptocurrency prices in real time using the Coinbase API, offering configurable time- or percentage-based alerts and more.</div>
         <div class="project-details">
-            <p>Full description: Project Alpha allows scanning networks, detecting vulnerabilities, and generating reports.</p>
-            <img src="https://via.placeholder.com/600x300?text=Project+Alpha+Screenshot" alt="Project Alpha Screenshot">
-        </div>
-    </div>
-
-    <!-- Project Beta -->
-    <div class="project">
-        <div class="project-title">Project Beta</div>
-        <div class="project-summary">A home lab automation system for pentesting labs.</div>
-        <div class="project-details">
-            <p>Full description: Project Beta automates lab setup, testing scripts, and monitoring for pentesting labs.</p>
-            <img src="https://via.placeholder.com/600x300?text=Project+Beta+Screenshot" alt="Project Beta Screenshot">
+            <p>Stocker is a Python-based application that enables users to track cryptocurrency prices
+                in real time. It retrieves market data through the Coinbase API and
+                supports configurable price-target alerts based on elapsed time or
+                percentage change, helping users avoid missing key price movements. In
+                addition to built-in visual and audio notifications within the GUI, Stocker
+                can optionally send SMS alerts via AWS Simple Notification Service (SNS). </p>
+            <img src="project_images/stocker.png" alt="Project Alpha Screenshot">
         </div>
     </div>
 
     <!-- Project Gamma -->
     <div class="project">
-        <div class="project-title">Project Gamma</div>
-        <div class="project-summary">A tool for secure file sharing over local networks.</div>
+        <div class="project-title">Shellcode Generator</div>
+        <div class="project-summary">This program generates shellcode by assembling source code with NASM, extracting opcodes from the compiled object file, and formatting them into a usable byte sequence for security testing.</div>
         <div class="project-details">
-            <p>Full description: Project Gamma enables encrypted file sharing across local networks with user access controls.</p>
-            <img src="https://via.placeholder.com/600x300?text=Project+Gamma+Screenshot" alt="Project Gamma Screenshot">
+            <p>This program generates shellcode from an assembly source file. The user provides the assembly file and the target format (ELF, WIN, or WIN32). The tool assembles the source with NASM to produce an object file, then disassembles the resulting .o or .obj with objdump. It extracts the opcodes from the .text section and formats them into a shellcode byte sequence for use in security testing and research contexts. </p>
+            <img src="project_images/shellcode_generator.png" alt="Picture">
         </div>
     </div>
 
-    <a href="index.html" class="back-button">← Back to Main Page</a>
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Port Scanner</div>
+        <div class="project-summary">This Java-based port scanner performs host discovery and flexible single- or multi-host port scanning with configurable ranges, timing, and output options, including file-based input/output and an automated scan mode.</div>
+        <div class="project-details">
+            <p>This Java-based port scanner supports host discovery and both single-host and multi-host port scanning. It also includes convenience features such as saving the list of online hosts to a file and loading a scan host range from a file. Users can configure the target network address as needed.
+
+                An AUTO scan mode allows the user to specify the port range, timeout, and scan order (sequential or randomized), and optionally hide closed ports to keep results concise.
+
+            </p>
+            <img src="project_images/port_scanner.png" alt="Picture">
+        </div>
+    </div>
+
+    <!-- Project Beta -->
+    <div class="project">
+        <div class="project-title">Port Scanner Detector</div>
+        <div class="project-summary">This Python application detects TCP port-scanning activity by concurrently capturing and analyzing network traffic, tracking connection patterns over time, and alerting in the console when a source exceeds a configurable fan-out threshold indicating suspicious behavior.</div>
+        <div class="project-details">
+            <p>This Python application monitors network traffic for TCP port-scanning activity and generates alerts based on a configurable port range and fan-out rate. It uses two concurrent threads: a packet-sniffing thread that logs new connections to a hash table, and a processing thread that continuously analyzes those entries for anomalous behavior. When suspicious activity is detected, the application reports it to the console.
+
+                Sniffer: Captures packets, parses the Ethernet and IP headers, validates the TCP protocol, and then extracts key TCP fields. It records the source and destination IP addresses, destination port, and SYN/ACK flags, along with a timestamp for previously unseen connections.
+
+                Table Processor: Iterates over the connection table to remove expired entries based on a defined connection lifetime (5 minutes). It also computes the fan-out rate per source and flags potential port scanners when the configured threshold is exceeded, issuing a warning in the console.</p>
+            <img src="project_images/port_scanner_detector.png" alt="Project Beta Screenshot">
+        </div>
+    </div>
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Windows Malware Monitor</div>
+        <div class="project-summary">This PowerShell script detects potential persistence mechanisms by periodically monitoring and comparing key Windows startup locations, scheduled tasks, and registry paths, alerting administrators to any suspicious system changes.</div>
+        <div class="project-details">
+            <p>This PowerShell script monitors common Windows persistence locations and reports any new changes every five minutes, helping system administrators stay aware of potentially significant system modifications. It operates by taking an initial baseline snapshot, then generating a new snapshot at each interval and comparing it to the previous baseline. Any differences are logged, and the most recent snapshot becomes the new baseline for the next cycle.
+
+                The script tracks changes in Scheduled Tasks, key startup-related registry paths (HKCU/HKLM/HKCR), and Startup folders. Specifically, it monitors locations such as Shell Folders, User Shell Folders, Run, and RunOnce under HKLM/HKCU—areas commonly used to launch programs at system startup. It also watches file-association “shell” keys for executable extensions (e.g., .exe, .bat, .com, .hta, .pif), which can be abused by prepending a malicious executable so it runs whenever the associated file type is launched. In addition, the script checks for changes to the explorer.exe path to prevent Explorer subversion, and monitors ActiveX/related startup component entries that can execute before Explorer loads.</p>
+            <img src="project_images/malware_monitor.png" alt="Picture">
+        </div>
+    </div>
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Network Change Monitor</div>
+        <div class="project-summary">This Bash script monitors a network for new hosts and open ports by comparing periodic scans to an initial baseline, logging any changes for timely review.</div>
+        <div class="project-details">
+            <p>This Bash script monitors a network for newly active IP addresses and open ports. It begins by recording a baseline of all hosts and ports that are reachable at startup, then performs periodic checks every five minutes to identify changes. Any newly detected hosts or open ports are logged, allowing users to review and respond to network changes in a timely manner. </p>
+            <img src="project_images/network_change_monitor.png" alt="Picture">
+        </div>
+    </div>
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Simple FTP Client/Server</div>
+        <div class="project-summary">This C-based project implements a TCP FTP client/server system that reliably transfers files by exchanging metadata and data streams with acknowledgment handling over persistent connections.</div>
+        <div class="project-details">
+            <p>Written in C, this project implements a simple TCP-based FTP client/server application. The server listens on a specified port for incoming client connections and, once connected, receives a filename and its associated file contents. The client may send multiple files during a single session or terminate the connection when finished.
+
+                Client:
+                The client establishes a reliable stream-socket connection to the server. It calculates the filename length and file size, converts these values to network byte order, and transmits them to the server, validating return codes for each write operation. The file contents are then read into a buffer and sent over the connection. After transmission, the client waits for an acknowledgment (ACK) from the server to confirm successful receipt before either sending another file or terminating the session with a DONE command.
+
+                Server:
+                The server binds to a socket descriptor and listens for incoming connections. Upon accepting a client connection, it receives the file metadata (filename length and file size) followed by the file data stream. The incoming data is buffered and written to disk once all bytes are received, reconstructing the transmitted file. After completion, the server sends an acknowledgment to the client and returns to listening for new connections.
+
+            </p>
+            <img src="project_images/simple_ftp.png" alt="Picture">
+        </div>
+    </div>
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">IPv4 CIDR Converter</div>
+        <div class="project-summary">This application takes a CIDR IPv4 address as input and outputs the corresponding subnet and all valid host IP addresses within it.</div>
+        <div class="project-details">
+            <p>This application accepts a CIDR (Classless Inter-Domain Routing) IPv4 address as input and outputs the corresponding subnet along with a list of all valid host IP addresses, excluding the network and broadcast addresses. </p>
+            <img src="project_images/ipv4_cidr_converter.png" alt="Picture">
+        </div>
+    </div>
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Caesar Cipher Code Breaker</div>
+        <div class="project-summary">This Python project breaks Caesar ciphers using frequency analysis by iteratively testing likely letter shifts based on English character frequencies until the correct plaintext is identified.</div>
+        <div class="project-details">
+            <p>This Python project is a Caesar cipher breaker that uses frequency analysis to decrypt messages. It begins by identifying the most common character in the ciphertext, then compares it against an ordered list of letters ranked by typical frequency in English. Iterating through that list, the program computes the shift by taking the ASCII difference between the candidate plaintext letter and the ciphertext’s most frequent letter. It applies the resulting shift across the entire ciphertext to generate a potential plaintext. This process repeats with the next most likely candidate until the user confirms the correct decryption. </p>
+            <img src="project_images/caesar.png" alt="Caesar Pic">
+        </div>
+    </div>
+
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Storing Words Using a Prefix Tree</div>
+        <div class="project-summary">This C++ program implements a trie (prefix tree) for efficient word storage and lookup, supporting fast O(M) insertions and searches based on word or prefix length.</div>
+        <div class="project-details">
+            <p>This C++ program implements a prefix tree (trie) to store a user-provided set of words, enabling efficient prefix lookups and word searches. Tree operations run in O(M) time, where M is the length of the input word or prefix. Each path through the tree represents a word, and a terminal node (tracked via a boolean “end-of-word” flag) marks complete entries. Nodes are represented using pointers, and inserting a new word is performed by recursively traversing the trie: for each character, the program checks whether a corresponding child node exists, creates one if necessary, and continues until the final character is processed. </p>
+            <img src="project_images/storing_words_using_prefix_tree.png" alt="Picture">
+        </div>
+    </div>
+
+
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">DCS Mission File Combiner</div>
+        <div class="project-summary">This program merges multiple DCS mission files into a single unified scenario by parsing and consolidating unit data, enabling collaborative mission creation with reduced manual effort.</div>
+        <div class="project-details">
+            <p>For context, DCS is a combat flight simulator in which each scenario is defined by a “mission file.” These files use a proprietary syntax with some similarities to XML. While DCS includes an in-game mission editor, creating missions is time-consuming and does not support collaborative workflows.
+
+                This program enables collaboration by merging multiple mission files into a single combined mission. It processes two mission files at a time: each file is parsed, relevant data is extracted, and a new mission file is generated that consolidates unit data into unified lists, resulting in a single merged scenario. Although the implementation is intentionally lightweight and does not support every mission editor feature, it significantly reduces the workload associated with tasks like unit placement. The tool can be run iteratively—merging the newly generated mission with additional mission files—allowing for an effectively unlimited number of contributors.</p>
+            <img src="project_images/dcs_mission_converter.png" alt="Picture">
+        </div>
+    </div>
+
+    <!-- Project Gamma -->
+    <div class="project">
+        <div class="project-title">Discord Chat Bot</div>
+        <div class="project-summary">This project is a Discord chatbot powered by the GPT-3 API that offers opt-in conversational AI along with features like model switching, content generation, lookups, and interactive multi-mode chat capabilities.</div>
+        <div class="project-details">
+            <p>This project is a conversational Discord chatbot that integrates with the GPT-3 API to enhance server chat. The bot only responds to members who explicitly opt in to a conversation, allowing users to subscribe or unsubscribe at any time.
+
+                Beyond opt-in/opt-out controls, the bot includes several additional features: users can switch between different AI “intelligence” (model) levels via a single command, generate a horror story from a short prompt, perform quick Wikipedia term lookups, list current channel members, pause/resume/terminate a bot session, run image searches, and initiate an AI-to-AI mode where two AI instances converse within the same chat.</p>
+            <img src="project_images/discord_chat_bot.png" alt="Picture">
+        </div>
+    </div>
 </div>
 
 <script>
@@ -207,6 +386,27 @@
         project.addEventListener('click', () => {
             project.classList.toggle('active');
         });
+    });
+
+
+    // Toggle the options menu
+    const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+    const floatingOptions = document.querySelector('.floating-options');
+
+    toggleMenuBtn.addEventListener('click', () => {
+        floatingOptions.style.display = floatingOptions.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Expand all projects and hide menu
+    document.getElementById('expandAll').addEventListener('click', () => {
+        document.querySelectorAll('.project').forEach(p => p.classList.add('active'));
+        floatingOptions.style.display = 'none'; // hide menu after selection
+    });
+
+    // Collapse all projects and hide menu
+    document.getElementById('collapseAll').addEventListener('click', () => {
+        document.querySelectorAll('.project').forEach(p => p.classList.remove('active'));
+        floatingOptions.style.display = 'none'; // hide menu after selection
     });
 </script>
 
